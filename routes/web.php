@@ -33,10 +33,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/master-items', [App\Http\Controllers\MasterItemsController::class, 'index']);
+
+    Route::get('/kategori', [App\Http\Controllers\Kategori::class, 'index'])->name('kategori');
+    Route::get('/kategori/search', [App\Http\Controllers\Kategori::class, 'search']);
+    Route::get('/kategori/form/{method}/{id?}', [App\Http\Controllers\Kategori::class, 'formView']);
+    Route::post('/kategori/form/{method}/{id?}', [App\Http\Controllers\Kategori::class, 'formSubmit']);
+    Route::get('/kategori/delete/{id}', [App\Http\Controllers\Kategori::class, 'delete']);
+    Route::get('/kategori/view/{id}', [App\Http\Controllers\Kategori::class, 'singleView']);
+    Route::get('/kategori/export-pdf/{id}', [App\Http\Controllers\Kategori::class, 'exportPdf'])->name('kategori.export');
 
     // Router lama
+    Route::get('/master-items', [App\Http\Controllers\MasterItemsController::class, 'index'])->name('master-items');
     Route::get('/master-items/search', [App\Http\Controllers\MasterItemsController::class, 'search']);
+    Route::get('/master-items/export-csv', [App\Http\Controllers\MasterItemsController::class, 'exportCsv'])->name('master-items.export');
     Route::get('/master-items/form/{method}/{id?}', [App\Http\Controllers\MasterItemsController::class, 'formView']);
     Route::post('/master-items/form/{method}/{id?}', [App\Http\Controllers\MasterItemsController::class, 'formSubmit']);
 

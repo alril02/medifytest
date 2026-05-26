@@ -42,6 +42,30 @@
                             <td>:</td>
                             <td>{{$data->jenis}}</td>
                         </tr>
+                        <tr>
+                            <th>Kategori</th>
+                            <td>:</td>
+                            <td>
+                                @if($data->kategoris->isNotEmpty())
+                                    <ul class="mb-0">
+                                        @foreach($data->kategoris as $kategori)
+                                            <li>{{ $kategori->nama }} ({{ $kategori->kode }})</li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <span class="text-muted">Belum ada kategori terkait</span>
+                                @endif
+                            </td>
+                        </tr>
+                        @if(!empty($data->foto_url))
+                        <tr>
+                            <th>Foto</th>
+                            <td>:</td>
+                            <td>
+                                <img src="{{ $data->foto_url }}" alt="Foto Produk" style="max-width:300px; max-height:300px; border:1px solid #ddd; padding:5px; border-radius:4px;">
+                            </td>
+                        </tr>
+                        @endif
                     </table>
                     <a class="btn btn-info" href="{{url('master-items/form/edit')}}/{{$data->id}}">Edit</a>
                     <a class="btn btn-danger" href="{{url('master-items/delete')}}/{{$data->id}}" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
