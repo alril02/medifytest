@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('laba');
             $table->string('supplier');
             $table->string('jenis');
+            $table->string('foto_path')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
